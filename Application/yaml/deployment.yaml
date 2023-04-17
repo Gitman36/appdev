@@ -2,18 +2,18 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
 # set your lab user name
-  name: user12-hello-world
+  name: redhatuser82-hello-world
 spec:
   replicas: 3
   selector:
     matchLabels:
 # set your lab user name
-      app: user12-hello-world
+      app: redhatuser82-hello-world
   template:
     metadata:
       labels:
 # set your lab user name
-        app: user12-hello-world
+        app: redhatuser82-hello-world
     spec:
       containers:
         - resources: {}
@@ -24,7 +24,7 @@ spec:
               protocol: TCP
           imagePullPolicy: IfNotPresent
 # update with the image you build in part 1
-          image: 'quay.io/user12/myimagename:<Tag>'
+          image: 'quay.io/redhatuser82/myimagename:<Tag>'
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
   strategy:
