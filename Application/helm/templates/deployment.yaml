@@ -14,6 +14,11 @@ spec:
 # set your lab user name
         app: {{ .Release.Name }} #user12-hello-world
     spec:
+      volumes:
+        - name: index-html
+          configMap:
+            name: index.html
+            defaultMode: 420
       containers:
         - resources: {}
           terminationMessagePath: /dev/termination-log
@@ -24,6 +29,9 @@ spec:
           imagePullPolicy: IfNotPresent
 # update with the image you build in part 1
           image: {{ .Values.containers.image }}:{{ .Values.containers.tag }} #'quay.io/redhatuser82/myimagename:v3'
+        volumeMounts:
+          - name: index-html
+            mountPath: /tmp/html # this will mount the html.index file to it application location  
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
   strategy:
