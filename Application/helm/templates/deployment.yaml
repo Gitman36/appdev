@@ -6,12 +6,12 @@ metadata:
 spec:
   replicas: {{ .Values.ReplicaNumber }}  #3
   selector:
-    matchLabels:{{ .Release.Name }}
+    matchLabels: {{ .Release.Name }}
 # set your lab user name
       app: user12-hello-world
   template:
     metadata:
-      labels:{{ .Release.Name }}
+      labels: {{ .Release.Name }}
 # set your lab user name
         app: user12-hello-world
     spec:
@@ -20,7 +20,7 @@ spec:
           terminationMessagePath: /dev/termination-log
           name: {{ .Release.Name }}  #hello-world
           ports:
-            - containerPort:{{ .Values.containers.containerPort }} #8080
+            - containerPort: {{ .Values.containers.containerPort }} #8080
               protocol: TCP
           imagePullPolicy: IfNotPresent
 # update with the image you build in part 1
