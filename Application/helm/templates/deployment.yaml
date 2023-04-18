@@ -10,9 +10,9 @@ spec:
       app: {{ .Release.Name }}
   template:
     metadata:
-      labels: {{ .Release.Name }}
+      labels: 
 # set your lab user name
-        app: user12-hello-world
+        app: {{ .Release.Name }} #user12-hello-world
     spec:
       containers:
         - resources: {}
