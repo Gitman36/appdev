@@ -10,7 +10,7 @@ spec:
       app: {{ .Release.Name }}
   template:
     metadata:
-      Annotations:
+      annotations:
         checksum/config: {{ include (print $.Templete.BasePath"/configmap.yaml") . | sha256sum }}
         rollme: {{randAlphaNum 5 | quote }}
       labels: 
