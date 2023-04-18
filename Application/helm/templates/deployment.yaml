@@ -1,0 +1,35 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+# set your lab user name
+  name: {{ .Release.Name }}    #user12-hello-world
+spec:
+  replicas: {{ .Values.ReplicaNumber }}  #3
+  selector:
+    matchLabels:{{ .Release.Name }}
+# set your lab user name
+      app: user12-hello-world
+  template:
+    metadata:
+      labels:{{ .Release.Name }}
+# set your lab user name
+        app: user12-hello-world
+    spec:
+      containers:
+        - resources: {}
+          terminationMessagePath: /dev/termination-log
+          name: {{ .Release.Name }}  #hello-world
+          ports:
+            - containerPort:{{ .Values.containers.containerPort }} #8080
+              protocol: TCP
+          imagePullPolicy: IfNotPresent
+# update with the image you build in part 1
+          image: {{ .Values.containers.image }}:{{ .Values.containers.tag }} #'quay.io/redhatuser82/myimagename:v3'
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
