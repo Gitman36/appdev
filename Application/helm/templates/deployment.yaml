@@ -10,6 +10,9 @@ spec:
       app: {{ .Release.Name }}
   template:
     metadata:
+      Annotations:
+        checksum/configmap: {{ include (print $.Templete.BasePath"/configmap.yaml") . | sha256sum }}
+        rollme: {{randAlphaNum 5 | quote }}
       labels: 
 # set your lab user name
         app: {{ .Release.Name }} #user12-hello-world
