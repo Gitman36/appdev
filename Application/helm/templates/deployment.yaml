@@ -11,7 +11,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: {{ include (print $.Templete.BasePath"/configmap.yaml") . | sha256sum }}
+        checksum/config: {{ include (print $.Templete.BasePath"/ConfigMap.yaml") . | sha256sum }}
         rollme: {{randAlphaNum 5 | quote }}
       labels: 
 # set your lab user name
